@@ -1,0 +1,196 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人事管理系统</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            outline: 0;
+            margin: 0;
+            border: 0;
+        }
+        body {
+            background: url("Content/Images/login/login.jpg");
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+
+        .login_box {
+            width: 375px;
+            overflow: hidden;
+            position: absolute;
+            top: 92px;
+            right: 80px;
+        }
+
+            .login_box h2 {
+                width: 375px;
+                height: 79px;
+                text-align: center;
+                line-height: 79px;
+                color: #3C3C3C;
+                background: url('Content/Images/login/login_title.png') no-repeat;
+            }
+
+        .login_main {
+            padding-bottom: 10px;
+            padding-top: 15px;
+            overflow: hidden;
+            background: url(Content/Images/login/login_main.png) repeat-y;
+        }
+
+        .login_box p input {
+            width: 276px;
+            padding-left: 40px;
+            height: 49px;
+            border: 0;
+            line-height: 49px;
+        }
+
+        .user {
+            width: 316px;
+            height: 51px;
+            background: #F9F9F9;
+            border: 1px solid #B7B7B7;
+            margin: 0 auto;
+            -moz-box-shadow: 0 0 5px #ccc inset;
+            -webkit-box-shadow: 0 0 5px #ccc inset;
+            box-shadow: 0 0 5px #ccc inset;
+        }
+
+        .password {
+            width: 316px;
+            height: 51px;
+            background: #F9F9F9;
+            border: 1px solid #B7B7B7;
+            border-top: 0;
+            margin: 0 auto;
+            -moz-box-shadow: 0 0 5px #ccc inset;
+            -webkit-box-shadow: 0 0 5px #ccc inset;
+            box-shadow: 0 0 5px #ccc inset;
+        }
+
+        .user input {
+            background: url(Content/Images/login/user.png) no-repeat left center;
+        }
+
+        .password input {
+            background: url(Content/Images/login/key.png) no-repeat left center;
+        }
+
+        .login_btn {
+            width: 319px;
+            margin: 0 auto;
+            height: 62px;
+            padding-top: 15px;
+            cursor: pointer;
+        }
+
+            .login_btn a {
+                width: 319px;
+                height: 62px;
+                color: #fff;
+                line-height: 62px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 20px;
+                display: block;
+                background: url(Content/Images/login/login_btn.png);
+            }
+
+        .login_box .login_footer {
+            width: 375px;
+            color: #989898;
+            text-align: center;
+            height: 76px;
+            line-height: 62px;
+            background: url(Content/Images/login/login_footer.png);
+        }
+    </style>
+</head>
+<body>
+    <div class="login_box">
+        <h2>
+            人事管理系统
+        </h2>
+        <div class="login_main">
+            <p class="user">
+                <input type="text" name="user_name" id="user_name" autocomplete="off" value="" placeholder="请输入用户名" />
+            </p>
+            <p class="password">
+                <input type="password" name="user_pw" id="user_pw" value="" placeholder="请输入密码" />
+            </p>
+            <div class="login_btn">
+                <a title="登录" onclick="Login.submit()">登 录</a>
+            </div>
+        </div>
+        <p class="login_footer">
+
+        </p>
+    </div>
+</body>
+</html>
+<script src="~/js/jquery.min.js"></script>
+<script>
+    var city;
+    $(function () {
+        Login = {
+            submit: function () {
+                var username = $('#user_name').val();
+                var pwd = $('#user_pw').val();
+                if (!!!username) {
+                    alert('用户名不能为空!');
+                    $('#user_name').focus();
+                } else if (!!!pwd) {
+                    alert('密码不能为空!');
+                    $('#user_pw').focus();
+                } else {
+
+                    $.ajax({
+                        url: "Login/CheckUserLogin",
+                        type: "POST",
+                        dataType: "json",
+                        data: { "UserName": $("#user_name").val(), "UserPwd": $("#user_pw").val(),"city":city },
+                        success: function (data) {
+                            if (data.result == "success") {
+                                window.location.href = "/Home/Index";
+                            } else {
+                                alert(data.content);
+                            }
+                        }
+                    });
+                   
+                }
+            }
+        }
+    })
+    //调用新浪api获取用户所在城市
+    $.ajax({
+        url: "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",
+        type: "get",
+        dataType: "script",
+        timeout: 2000,    //2s请求不到新浪的api就停止发送请求，进入error回调函数
+        success: function (result) {
+            try {
+                city = remote_ip_info.city == remote_ip_info.province ? remote_ip_info.province : remote_ip_info.province + remote_ip_info.city;
+                //getiflogin();
+            } catch (e) {
+                city = "未知";
+               //getiflogin();
+            }
+        },
+        error: function (data, textStatus, jqXHR) {
+            city = "未知";
+            //getiflogin();
+        }
+    });
+</script>
+
+
+
+

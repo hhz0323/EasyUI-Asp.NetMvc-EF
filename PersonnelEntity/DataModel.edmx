@@ -1,0 +1,2839 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PersonnelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BaseSalary" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Bulletin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Theme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Publisher" Type="int" Nullable="false" />
+          <Property Name="Accessory" Type="varchar" MaxLength="255" />
+          <Property Name="Content" Type="varchar(max)" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="PublishDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Button">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Change">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="DepartmentId_Old" Type="int" Nullable="false" />
+          <Property Name="DepartmentId_New" Type="int" Nullable="false" />
+          <Property Name="ChangeTime" Type="datetime" />
+          <Property Name="RegsterPerson" Type="int" Nullable="false" />
+          <Property Name="RegsterTime" Type="datetime" Nullable="false" />
+          <Property Name="AuditPerson" Type="int" />
+          <Property Name="AuditStatus" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ChangeAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChangeId" Type="int" Nullable="false" />
+          <Property Name="AuditPersonId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="AuditTime" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Compact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompactTypeId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="OfficialSalary" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="IsBuyInsurance" Type="bit" />
+          <Property Name="SignTime" Type="datetime" />
+          <Property Name="SignType" Type="varchar" MaxLength="50" />
+          <Property Name="CompactStatus" Type="varchar" MaxLength="50" />
+          <Property Name="File" Type="varchar" MaxLength="50" />
+          <Property Name="RegsterPerson" Type="varchar" MaxLength="50" />
+          <Property Name="RegsterTime" Type="datetime" />
+          <Property Name="Content" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CompactType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AuditMaxLeaveDays" Type="int" />
+          <Property Name="AuditMaxMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MainPrincipal" Type="int" />
+          <Property Name="SubordinationPrincipal" Type="int" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Dimission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="DimissionTime" Type="datetime" />
+          <Property Name="AuditPerson" Type="int" />
+          <Property Name="AuditStatus" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="EducationExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GraduateSchool" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="StudyMajor" Type="varchar" MaxLength="50" />
+          <Property Name="XueLi" Type="int" />
+          <Property Name="IfObtainedCertificate" Type="bit" />
+          <Property Name="ImgSrc" Type="varchar" MaxLength="200" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="IfGraduate" Type="bit" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Work" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldName" Type="varchar" MaxLength="50" />
+          <Property Name="EnglishName" Type="varchar" MaxLength="50" />
+          <Property Name="Sex" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ASLevelId" Type="int" Nullable="false" />
+          <Property Name="PoliticsStatus" Type="varchar" MaxLength="50" />
+          <Property Name="Nation" Type="varchar" MaxLength="50" />
+          <Property Name="Marriage" Type="varchar" MaxLength="50" />
+          <Property Name="InputDate" Type="datetime" />
+          <Property Name="BaseSalary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PictureSrc" Type="varchar" MaxLength="100" />
+          <Property Name="BankAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GraduateSchool" Type="varchar" MaxLength="100" />
+          <Property Name="StudyMajor" Type="varchar" MaxLength="50" />
+          <Property Name="XueLi" Type="int" />
+          <Property Name="IdentityCard" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Anmelden" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="QQ" Type="varchar" MaxLength="50" />
+          <Property Name="NativePlace" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="30" />
+          <Property Name="CurAddress" Type="varchar" MaxLength="255" />
+          <Property Name="HealthState" Type="varchar" MaxLength="50" />
+          <Property Name="HousingCase" Type="varchar" MaxLength="50" />
+          <Property Name="Hobby" Type="varchar" MaxLength="255" />
+          <Property Name="Speciality" Type="varchar" MaxLength="255" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="EmployeeStatus" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Evection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Theme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="SynergyPreson" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="PredictCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ApplyForCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="RegsterPerson" Type="int" Nullable="false" />
+          <Property Name="RegsterTime" Type="datetime" Nullable="false" />
+          <Property Name="AuditPerson" Type="int" />
+          <Property Name="AuditStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Theme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Publisher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Accessory" Type="varchar" MaxLength="50" />
+          <Property Name="Content" Type="varchar(max)" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="PublishDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeId" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="LeaveCause" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="RegsterPerson" Type="int" Nullable="false" />
+          <Property Name="RegsterTime" Type="datetime" Nullable="false" />
+          <Property Name="AuditPerson" Type="int" />
+          <Property Name="AuditStatus" Type="int" Nullable="false" />
+          <Property Name="IsReader" Type="bit" Nullable="false" />
+          <Property Name="LeaveDays" Type="int" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LeaveDays" Type="int" />
+          <Property Name="OneDayMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DeductMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="UserIp" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="IfSuccess" Type="bit" Nullable="false" />
+          <Property Name="LoginDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="LinkAddress" Type="varchar" MaxLength="100" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuButton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="ButtonId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RewarAndPunish">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="RTime" Type="datetime" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RewarOrPunish" Type="bit" />
+          <Property Name="RegsterPerson" Type="int" Nullable="false" />
+          <Property Name="RegsterTime" Type="datetime" Nullable="false" />
+          <Property Name="AuditPerson" Type="int" />
+          <Property Name="AuditStatus" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="RewarAndPunishAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RewarAndPunishId" Type="int" Nullable="false" />
+          <Property Name="AuditPerson" Type="int" Nullable="false" />
+          <Property Name="Opinion" Type="varchar" MaxLength="255" />
+          <Property Name="AuditTime" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="RewarAndPunishProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="RoleMenuButton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="ButtonId" Type="int" />
+          <Property Name="MenuId" Type="int" />
+        </EntityType>
+        <EntityType Name="SignIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainPersonId" Type="int" Nullable="false" />
+          <Property Name="IsSignIn" Type="bit" Nullable="false" />
+          <Property Name="SignInTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrainCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TrainExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Organization" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="TrainCourse" Type="varchar" MaxLength="50" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Duration" Type="datetime" />
+          <Property Name="TrainRank" Type="varchar" MaxLength="50" />
+          <Property Name="CertificateName" Type="varchar" MaxLength="50" />
+          <Property Name="Organ" Type="varchar" MaxLength="50" />
+          <Property Name="ObtainedCertificateDate" Type="datetime" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TrainPerson">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainCourseId" Type="int" Nullable="false" />
+          <Property Name="TrainObject" Type="int" Nullable="false" />
+          <Property Name="IsAccept" Type="bit" />
+          <Property Name="TrainNumber" Type="int" />
+          <Property Name="TotalPoints" Type="int" />
+        </EntityType>
+        <EntityType Name="TrainPlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainCourseId" Type="int" Nullable="false" />
+          <Property Name="TrainDays" Type="datetime" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="TrainLecturer" Type="varchar" MaxLength="50" />
+          <Property Name="PlanTime" Type="datetime" />
+          <Property Name="PlanPerson" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAble" Type="bit" Nullable="false" />
+          <Property Name="IfChangePwd" Type="bit" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="UserOperateLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UserIp" Type="varchar" MaxLength="50" />
+          <Property Name="OperateInfo" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IfSuccess" Type="bit" Nullable="false" />
+          <Property Name="OperateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitName" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="WorkDepartment" Type="varchar" MaxLength="50" />
+          <Property Name="ProfessionalTitle" Type="varchar" MaxLength="50" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Content" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__Bulletin__Depart__38996AB5">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Bulletin" Type="Self.Bulletin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bulletin">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bulletin__Publis__37A5467C">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Bulletin" Type="Self.Bulletin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bulletin">
+              <PropertyRef Name="Publisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Change__AuditPer__6D0D32F4">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="AuditPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Change__Departme__6A30C649">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="DepartmentId_Old" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Change__Departme__6B24EA82">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="DepartmentId_New" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Change__Employee__693CA210">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Change__RegsterP__6C190EBB">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="RegsterPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChangeAud__Audit__72C60C4A">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ChangeAudit" Type="Self.ChangeAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChangeAudit">
+              <PropertyRef Name="AuditPersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChangeAud__Chang__71D1E811">
+          <End Role="Change" Type="Self.Change" Multiplicity="1" />
+          <End Role="ChangeAudit" Type="Self.ChangeAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Change">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChangeAudit">
+              <PropertyRef Name="ChangeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compact__Compact__1AD3FDA4">
+          <End Role="CompactType" Type="Self.CompactType" Multiplicity="1" />
+          <End Role="Compact" Type="Self.Compact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompactType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compact">
+              <PropertyRef Name="CompactTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compact__Employe__1BC821DD">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Compact" Type="Self.Compact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compact">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dimission__Audit__5CD6CB2B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Dimission" Type="Self.Dimission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dimission">
+              <PropertyRef Name="AuditPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dimission__Emplo__5BE2A6F2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Dimission" Type="Self.Dimission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dimission">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Education__Emplo__7C4F7684">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EducationExperience" Type="Self.EducationExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EducationExperience">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__ASLeve__0EA330E9">
+          <End Role="ASLevel" Type="Self.ASLevel" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ASLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Depart__108B795B">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Evection__AuditP__571DF1D5">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Evection" Type="Self.Evection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evection">
+              <PropertyRef Name="AuditPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Evection__Employ__5535A963">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Evection" Type="Self.Evection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evection">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Evection__Regste__5629CD9C">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Evection" Type="Self.Evection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evection">
+              <PropertyRef Name="RegsterPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inform__Employee__3E52440B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Inform" Type="Self.Inform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inform">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leave__AuditPers__5070F446">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="AuditPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leave__EmployeeI__4D94879B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leave__LeaveType__4E88ABD4">
+          <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="LeaveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leave__RegsterPe__4F7CD00D">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="RegsterPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuButto__Butto__4D5F7D71">
+          <End Role="Button" Type="Self.Button" Multiplicity="1" />
+          <End Role="MenuButton" Type="Self.MenuButton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Button">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MenuButton">
+              <PropertyRef Name="ButtonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuButto__MenuI__4C6B5938">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuButton" Type="Self.MenuButton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MenuButton">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RewarAndP__Audit__0C85DE4D">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RewarAndPunish">
+              <PropertyRef Name="AuditPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RewarAndP__Audit__123EB7A3">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RewarAndPunishAudit" Type="Self.RewarAndPunishAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RewarAndPunishAudit">
+              <PropertyRef Name="AuditPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RewarAndP__Emplo__0A9D95DB">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RewarAndPunish">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RewarAndP__Proje__09A971A2">
+          <End Role="RewarAndPunishProject" Type="Self.RewarAndPunishProject" Multiplicity="1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RewarAndPunishProject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RewarAndPunish">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RewarAndP__Regst__0B91BA14">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RewarAndPunish">
+              <PropertyRef Name="RegsterPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RewarAndP__Rewar__114A936A">
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="1" />
+          <End Role="RewarAndPunishAudit" Type="Self.RewarAndPunishAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RewarAndPunish">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RewarAndPunishAudit">
+              <PropertyRef Name="RewarAndPunishId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleMenuB__Butto__531856C7">
+          <End Role="Button" Type="Self.Button" Multiplicity="0..1" />
+          <End Role="RoleMenuButton" Type="Self.RoleMenuButton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Button">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleMenuButton">
+              <PropertyRef Name="ButtonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleMenuB__MenuI__540C7B00">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="RoleMenuButton" Type="Self.RoleMenuButton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleMenuButton">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleMenuB__RoleI__5224328E">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="RoleMenuButton" Type="Self.RoleMenuButton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleMenuButton">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SignIn__TrainPer__6166761E">
+          <End Role="TrainPerson" Type="Self.TrainPerson" Multiplicity="1" />
+          <End Role="SignIn" Type="Self.SignIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SignIn">
+              <PropertyRef Name="TrainPersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainExpe__Emplo__01142BA1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TrainExperience" Type="Self.TrainExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainExperience">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainPers__Train__29221CFB">
+          <End Role="TrainPlan" Type="Self.TrainPlan" Multiplicity="1" />
+          <End Role="TrainPerson" Type="Self.TrainPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainPlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainPerson">
+              <PropertyRef Name="TrainCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainPers__Train__2A164134">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TrainPerson" Type="Self.TrainPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainPerson">
+              <PropertyRef Name="TrainObject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainPlan__Train__245D67DE">
+          <End Role="TrainCourse" Type="Self.TrainCourse" Multiplicity="1" />
+          <End Role="TrainPlan" Type="Self.TrainPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainPlan">
+              <PropertyRef Name="TrainCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__EmployeeId__15502E78">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserOpera__UserI__31EC6D26">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserOperateLog" Type="Self.UserOperateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOperateLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__RoleId__59C55456">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__UserId__58D1301D">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkExper__Emplo__778AC167">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonnelModelStoreContainer">
+          <EntitySet Name="ASLevel" EntityType="Self.ASLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bulletin" EntityType="Self.Bulletin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Button" EntityType="Self.Button" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Change" EntityType="Self.Change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeAudit" EntityType="Self.ChangeAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compact" EntityType="Self.Compact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompactType" EntityType="Self.CompactType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dimission" EntityType="Self.Dimission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationExperience" EntityType="Self.EducationExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evection" EntityType="Self.Evection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inform" EntityType="Self.Inform" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveType" EntityType="Self.LeaveType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginLog" EntityType="Self.LoginLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuButton" EntityType="Self.MenuButton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RewarAndPunish" EntityType="Self.RewarAndPunish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RewarAndPunishAudit" EntityType="Self.RewarAndPunishAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RewarAndPunishProject" EntityType="Self.RewarAndPunishProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMenuButton" EntityType="Self.RoleMenuButton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SignIn" EntityType="Self.SignIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainCourse" EntityType="Self.TrainCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainExperience" EntityType="Self.TrainExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainPerson" EntityType="Self.TrainPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainPlan" EntityType="Self.TrainPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserOperateLog" EntityType="Self.UserOperateLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkExperience" EntityType="Self.WorkExperience" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bulletin__Depart__38996AB5" Association="Self.FK__Bulletin__Depart__38996AB5">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Bulletin" EntitySet="Bulletin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bulletin__Publis__37A5467C" Association="Self.FK__Bulletin__Publis__37A5467C">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bulletin" EntitySet="Bulletin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__AuditPer__6D0D32F4" Association="Self.FK__Change__AuditPer__6D0D32F4">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__Departme__6A30C649" Association="Self.FK__Change__Departme__6A30C649">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__Departme__6B24EA82" Association="Self.FK__Change__Departme__6B24EA82">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__Employee__693CA210" Association="Self.FK__Change__Employee__693CA210">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__RegsterP__6C190EBB" Association="Self.FK__Change__RegsterP__6C190EBB">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChangeAud__Audit__72C60C4A" Association="Self.FK__ChangeAud__Audit__72C60C4A">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ChangeAudit" EntitySet="ChangeAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChangeAud__Chang__71D1E811" Association="Self.FK__ChangeAud__Chang__71D1E811">
+            <End Role="Change" EntitySet="Change" />
+            <End Role="ChangeAudit" EntitySet="ChangeAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compact__Compact__1AD3FDA4" Association="Self.FK__Compact__Compact__1AD3FDA4">
+            <End Role="CompactType" EntitySet="CompactType" />
+            <End Role="Compact" EntitySet="Compact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compact__Employe__1BC821DD" Association="Self.FK__Compact__Employe__1BC821DD">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Compact" EntitySet="Compact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dimission__Audit__5CD6CB2B" Association="Self.FK__Dimission__Audit__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Dimission" EntitySet="Dimission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dimission__Emplo__5BE2A6F2" Association="Self.FK__Dimission__Emplo__5BE2A6F2">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Dimission" EntitySet="Dimission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Education__Emplo__7C4F7684" Association="Self.FK__Education__Emplo__7C4F7684">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EducationExperience" EntitySet="EducationExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__ASLeve__0EA330E9" Association="Self.FK__Employee__ASLeve__0EA330E9">
+            <End Role="ASLevel" EntitySet="ASLevel" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Depart__108B795B" Association="Self.FK__Employee__Depart__108B795B">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evection__AuditP__571DF1D5" Association="Self.FK__Evection__AuditP__571DF1D5">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Evection" EntitySet="Evection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evection__Employ__5535A963" Association="Self.FK__Evection__Employ__5535A963">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Evection" EntitySet="Evection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evection__Regste__5629CD9C" Association="Self.FK__Evection__Regste__5629CD9C">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Evection" EntitySet="Evection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inform__Employee__3E52440B" Association="Self.FK__Inform__Employee__3E52440B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Inform" EntitySet="Inform" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__AuditPers__5070F446" Association="Self.FK__Leave__AuditPers__5070F446">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__EmployeeI__4D94879B" Association="Self.FK__Leave__EmployeeI__4D94879B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__LeaveType__4E88ABD4" Association="Self.FK__Leave__LeaveType__4E88ABD4">
+            <End Role="LeaveType" EntitySet="LeaveType" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__RegsterPe__4F7CD00D" Association="Self.FK__Leave__RegsterPe__4F7CD00D">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuButto__Butto__4D5F7D71" Association="Self.FK__MenuButto__Butto__4D5F7D71">
+            <End Role="Button" EntitySet="Button" />
+            <End Role="MenuButton" EntitySet="MenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuButto__MenuI__4C6B5938" Association="Self.FK__MenuButto__MenuI__4C6B5938">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuButton" EntitySet="MenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Audit__0C85DE4D" Association="Self.FK__RewarAndP__Audit__0C85DE4D">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Audit__123EB7A3" Association="Self.FK__RewarAndP__Audit__123EB7A3">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunishAudit" EntitySet="RewarAndPunishAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Emplo__0A9D95DB" Association="Self.FK__RewarAndP__Emplo__0A9D95DB">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Proje__09A971A2" Association="Self.FK__RewarAndP__Proje__09A971A2">
+            <End Role="RewarAndPunishProject" EntitySet="RewarAndPunishProject" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Regst__0B91BA14" Association="Self.FK__RewarAndP__Regst__0B91BA14">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Rewar__114A936A" Association="Self.FK__RewarAndP__Rewar__114A936A">
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+            <End Role="RewarAndPunishAudit" EntitySet="RewarAndPunishAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMenuB__Butto__531856C7" Association="Self.FK__RoleMenuB__Butto__531856C7">
+            <End Role="Button" EntitySet="Button" />
+            <End Role="RoleMenuButton" EntitySet="RoleMenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMenuB__MenuI__540C7B00" Association="Self.FK__RoleMenuB__MenuI__540C7B00">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="RoleMenuButton" EntitySet="RoleMenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMenuB__RoleI__5224328E" Association="Self.FK__RoleMenuB__RoleI__5224328E">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleMenuButton" EntitySet="RoleMenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SignIn__TrainPer__6166761E" Association="Self.FK__SignIn__TrainPer__6166761E">
+            <End Role="TrainPerson" EntitySet="TrainPerson" />
+            <End Role="SignIn" EntitySet="SignIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainExpe__Emplo__01142BA1" Association="Self.FK__TrainExpe__Emplo__01142BA1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TrainExperience" EntitySet="TrainExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainPers__Train__29221CFB" Association="Self.FK__TrainPers__Train__29221CFB">
+            <End Role="TrainPlan" EntitySet="TrainPlan" />
+            <End Role="TrainPerson" EntitySet="TrainPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainPers__Train__2A164134" Association="Self.FK__TrainPers__Train__2A164134">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TrainPerson" EntitySet="TrainPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainPlan__Train__245D67DE" Association="Self.FK__TrainPlan__Train__245D67DE">
+            <End Role="TrainCourse" EntitySet="TrainCourse" />
+            <End Role="TrainPlan" EntitySet="TrainPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__EmployeeId__15502E78" Association="Self.FK__User__EmployeeId__15502E78">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserOpera__UserI__31EC6D26" Association="Self.FK__UserOpera__UserI__31EC6D26">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserOperateLog" EntitySet="UserOperateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__RoleId__59C55456" Association="Self.FK__UserRole__RoleId__59C55456">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__UserId__58D1301D" Association="Self.FK__UserRole__UserId__58D1301D">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkExper__Emplo__778AC167" Association="Self.FK__WorkExper__Emplo__778AC167">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="WorkExperience" EntitySet="WorkExperience" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PersonnelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ASLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BaseSalary" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__ASLeve__0EA330E9" FromRole="ASLevel" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Bulletin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Accessory" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PublishDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Bulletin__Depart__38996AB5" FromRole="Bulletin" ToRole="Department" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Bulletin__Publis__37A5467C" FromRole="Bulletin" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Button">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MenuButton" Relationship="Self.FK__MenuButto__Butto__4D5F7D71" FromRole="Button" ToRole="MenuButton" />
+          <NavigationProperty Name="RoleMenuButton" Relationship="Self.FK__RoleMenuB__Butto__531856C7" FromRole="Button" ToRole="RoleMenuButton" />
+        </EntityType>
+        <EntityType Name="Change">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChangeTime" Type="DateTime" Precision="3" />
+          <Property Name="RegsterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditStatus" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Change__AuditPer__6D0D32F4" FromRole="Change" ToRole="Employee" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Change__Departme__6A30C649" FromRole="Change" ToRole="Department" />
+          <NavigationProperty Name="Department1" Relationship="Self.FK__Change__Departme__6B24EA82" FromRole="Change" ToRole="Department" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Change__Employee__693CA210" FromRole="Change" ToRole="Employee" />
+          <NavigationProperty Name="Employee2" Relationship="Self.FK__Change__RegsterP__6C190EBB" FromRole="Change" ToRole="Employee" />
+          <NavigationProperty Name="ChangeAudit" Relationship="Self.FK__ChangeAud__Chang__71D1E811" FromRole="Change" ToRole="ChangeAudit" />
+        </EntityType>
+        <EntityType Name="ChangeAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="AuditTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Change" Relationship="Self.FK__ChangeAud__Chang__71D1E811" FromRole="ChangeAudit" ToRole="Change" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__ChangeAud__Audit__72C60C4A" FromRole="ChangeAudit" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Compact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficialSalary" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="IsBuyInsurance" Type="Boolean" />
+          <Property Name="SignTime" Type="DateTime" Precision="3" />
+          <Property Name="SignType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompactStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="File" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegsterPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegsterTime" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CompactType" Relationship="Self.FK__Compact__Compact__1AD3FDA4" FromRole="Compact" ToRole="CompactType" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Compact__Employe__1BC821DD" FromRole="Compact" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="CompactType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compact" Relationship="Self.FK__Compact__Compact__1AD3FDA4" FromRole="CompactType" ToRole="Compact" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuditMaxLeaveDays" Type="Int32" />
+          <Property Name="AuditMaxMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MainPrincipal" Type="Int32" />
+          <Property Name="SubordinationPrincipal" Type="Int32" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Bulletin" Relationship="Self.FK__Bulletin__Depart__38996AB5" FromRole="Department" ToRole="Bulletin" />
+          <NavigationProperty Name="Change" Relationship="Self.FK__Change__Departme__6A30C649" FromRole="Department" ToRole="Change" />
+          <NavigationProperty Name="Change1" Relationship="Self.FK__Change__Departme__6B24EA82" FromRole="Department" ToRole="Change" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__Depart__108B795B" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Dimission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DimissionTime" Type="DateTime" Precision="3" />
+          <Property Name="AuditStatus" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Dimission__Audit__5CD6CB2B" FromRole="Dimission" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Dimission__Emplo__5BE2A6F2" FromRole="Dimission" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="EducationExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GraduateSchool" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudyMajor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="XueLi" Type="Int32" />
+          <Property Name="IfObtainedCertificate" Type="Boolean" />
+          <Property Name="ImgSrc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="IfGraduate" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Education__Emplo__7C4F7684" FromRole="EducationExperience" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Work" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OldName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnglishName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PoliticsStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Marriage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InputDate" Type="DateTime" Precision="3" />
+          <Property Name="BaseSalary" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PictureSrc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GraduateSchool" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudyMajor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="XueLi" Type="Int32" />
+          <Property Name="IdentityCard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Anmelden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QQ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NativePlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CurAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HealthState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HousingCase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Hobby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Speciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeStatus" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ASLevel" Relationship="Self.FK__Employee__ASLeve__0EA330E9" FromRole="Employee" ToRole="ASLevel" />
+          <NavigationProperty Name="Bulletin" Relationship="Self.FK__Bulletin__Publis__37A5467C" FromRole="Employee" ToRole="Bulletin" />
+          <NavigationProperty Name="Change" Relationship="Self.FK__Change__AuditPer__6D0D32F4" FromRole="Employee" ToRole="Change" />
+          <NavigationProperty Name="Change1" Relationship="Self.FK__Change__Employee__693CA210" FromRole="Employee" ToRole="Change" />
+          <NavigationProperty Name="Change2" Relationship="Self.FK__Change__RegsterP__6C190EBB" FromRole="Employee" ToRole="Change" />
+          <NavigationProperty Name="ChangeAudit" Relationship="Self.FK__ChangeAud__Audit__72C60C4A" FromRole="Employee" ToRole="ChangeAudit" />
+          <NavigationProperty Name="Compact" Relationship="Self.FK__Compact__Employe__1BC821DD" FromRole="Employee" ToRole="Compact" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Employee__Depart__108B795B" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Dimission" Relationship="Self.FK__Dimission__Audit__5CD6CB2B" FromRole="Employee" ToRole="Dimission" />
+          <NavigationProperty Name="Dimission1" Relationship="Self.FK__Dimission__Emplo__5BE2A6F2" FromRole="Employee" ToRole="Dimission" />
+          <NavigationProperty Name="EducationExperience" Relationship="Self.FK__Education__Emplo__7C4F7684" FromRole="Employee" ToRole="EducationExperience" />
+          <NavigationProperty Name="Evection" Relationship="Self.FK__Evection__AuditP__571DF1D5" FromRole="Employee" ToRole="Evection" />
+          <NavigationProperty Name="Evection1" Relationship="Self.FK__Evection__Employ__5535A963" FromRole="Employee" ToRole="Evection" />
+          <NavigationProperty Name="Evection2" Relationship="Self.FK__Evection__Regste__5629CD9C" FromRole="Employee" ToRole="Evection" />
+          <NavigationProperty Name="Inform" Relationship="Self.FK__Inform__Employee__3E52440B" FromRole="Employee" ToRole="Inform" />
+          <NavigationProperty Name="Leave" Relationship="Self.FK__Leave__AuditPers__5070F446" FromRole="Employee" ToRole="Leave" />
+          <NavigationProperty Name="Leave1" Relationship="Self.FK__Leave__EmployeeI__4D94879B" FromRole="Employee" ToRole="Leave" />
+          <NavigationProperty Name="Leave2" Relationship="Self.FK__Leave__RegsterPe__4F7CD00D" FromRole="Employee" ToRole="Leave" />
+          <NavigationProperty Name="RewarAndPunish" Relationship="Self.FK__RewarAndP__Audit__0C85DE4D" FromRole="Employee" ToRole="RewarAndPunish" />
+          <NavigationProperty Name="RewarAndPunishAudit" Relationship="Self.FK__RewarAndP__Audit__123EB7A3" FromRole="Employee" ToRole="RewarAndPunishAudit" />
+          <NavigationProperty Name="RewarAndPunish1" Relationship="Self.FK__RewarAndP__Emplo__0A9D95DB" FromRole="Employee" ToRole="RewarAndPunish" />
+          <NavigationProperty Name="RewarAndPunish2" Relationship="Self.FK__RewarAndP__Regst__0B91BA14" FromRole="Employee" ToRole="RewarAndPunish" />
+          <NavigationProperty Name="TrainExperience" Relationship="Self.FK__TrainExpe__Emplo__01142BA1" FromRole="Employee" ToRole="TrainExperience" />
+          <NavigationProperty Name="TrainPerson" Relationship="Self.FK__TrainPers__Train__2A164134" FromRole="Employee" ToRole="TrainPerson" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__EmployeeId__15502E78" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="WorkExperience" Relationship="Self.FK__WorkExper__Emplo__778AC167" FromRole="Employee" ToRole="WorkExperience" />
+        </EntityType>
+        <EntityType Name="Evection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SynergyPreson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PredictCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ApplyForCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegsterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Evection__AuditP__571DF1D5" FromRole="Evection" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Evection__Employ__5535A963" FromRole="Evection" ToRole="Employee" />
+          <NavigationProperty Name="Employee2" Relationship="Self.FK__Evection__Regste__5629CD9C" FromRole="Evection" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Inform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Accessory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PublishDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Inform__Employee__3E52440B" FromRole="Inform" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeaveCause" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegsterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditStatus" Type="Int32" Nullable="false" />
+          <Property Name="IsReader" Type="Boolean" Nullable="false" />
+          <Property Name="LeaveDays" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Leave__AuditPers__5070F446" FromRole="Leave" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Leave__EmployeeI__4D94879B" FromRole="Leave" ToRole="Employee" />
+          <NavigationProperty Name="Employee2" Relationship="Self.FK__Leave__RegsterPe__4F7CD00D" FromRole="Leave" ToRole="Employee" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK__Leave__LeaveType__4E88ABD4" FromRole="Leave" ToRole="LeaveType" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LeaveDays" Type="Int32" />
+          <Property Name="OneDayMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DeductMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Leave" Relationship="Self.FK__Leave__LeaveType__4E88ABD4" FromRole="LeaveType" ToRole="Leave" />
+        </EntityType>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserIp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IfSuccess" Type="Boolean" Nullable="false" />
+          <Property Name="LoginDate" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinkAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MenuButton" Relationship="Self.FK__MenuButto__MenuI__4C6B5938" FromRole="Menu" ToRole="MenuButton" />
+          <NavigationProperty Name="RoleMenuButton" Relationship="Self.FK__RoleMenuB__MenuI__540C7B00" FromRole="Menu" ToRole="RoleMenuButton" />
+        </EntityType>
+        <EntityType Name="MenuButton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Button" Relationship="Self.FK__MenuButto__Butto__4D5F7D71" FromRole="MenuButton" ToRole="Button" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK__MenuButto__MenuI__4C6B5938" FromRole="MenuButton" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="RewarAndPunish">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RTime" Type="DateTime" Precision="3" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RewarOrPunish" Type="Boolean" />
+          <Property Name="RegsterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditStatus" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__RewarAndP__Audit__0C85DE4D" FromRole="RewarAndPunish" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__RewarAndP__Emplo__0A9D95DB" FromRole="RewarAndPunish" ToRole="Employee" />
+          <NavigationProperty Name="Employee2" Relationship="Self.FK__RewarAndP__Regst__0B91BA14" FromRole="RewarAndPunish" ToRole="Employee" />
+          <NavigationProperty Name="RewarAndPunishProject" Relationship="Self.FK__RewarAndP__Proje__09A971A2" FromRole="RewarAndPunish" ToRole="RewarAndPunishProject" />
+          <NavigationProperty Name="RewarAndPunishAudit" Relationship="Self.FK__RewarAndP__Rewar__114A936A" FromRole="RewarAndPunish" ToRole="RewarAndPunishAudit" />
+        </EntityType>
+        <EntityType Name="RewarAndPunishAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opinion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AuditTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__RewarAndP__Audit__123EB7A3" FromRole="RewarAndPunishAudit" ToRole="Employee" />
+          <NavigationProperty Name="RewarAndPunish" Relationship="Self.FK__RewarAndP__Rewar__114A936A" FromRole="RewarAndPunishAudit" ToRole="RewarAndPunish" />
+        </EntityType>
+        <EntityType Name="RewarAndPunishProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="RewarAndPunish" Relationship="Self.FK__RewarAndP__Proje__09A971A2" FromRole="RewarAndPunishProject" ToRole="RewarAndPunish" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoleMenuButton" Relationship="Self.FK__RoleMenuB__RoleI__5224328E" FromRole="Role" ToRole="RoleMenuButton" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK__UserRole__RoleId__59C55456" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="RoleMenuButton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Button" Relationship="Self.FK__RoleMenuB__Butto__531856C7" FromRole="RoleMenuButton" ToRole="Button" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK__RoleMenuB__MenuI__540C7B00" FromRole="RoleMenuButton" ToRole="Menu" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__RoleMenuB__RoleI__5224328E" FromRole="RoleMenuButton" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="TrainCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TrainPlan" Relationship="Self.FK__TrainPlan__Train__245D67DE" FromRole="TrainCourse" ToRole="TrainPlan" />
+        </EntityType>
+        <EntityType Name="TrainExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TrainCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Duration" Type="DateTime" Precision="3" />
+          <Property Name="TrainRank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CertificateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Organ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ObtainedCertificateDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__TrainExpe__Emplo__01142BA1" FromRole="TrainExperience" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="TrainPerson">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsAccept" Type="Boolean" />
+          <Property Name="TrainNumber" Type="Int32" />
+          <Property Name="TotalPoints" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__TrainPers__Train__2A164134" FromRole="TrainPerson" ToRole="Employee" />
+          <NavigationProperty Name="TrainPlan" Relationship="Self.FK__TrainPers__Train__29221CFB" FromRole="TrainPerson" ToRole="TrainPlan" />
+          <NavigationProperty Name="SignIn" Relationship="PersonnelModel.FK__SignIn__TrainPer__6166761E" FromRole="TrainPerson" ToRole="SignIn" />
+        </EntityType>
+        <EntityType Name="TrainPlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainDays" Type="DateTime" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="TrainLecturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlanTime" Type="DateTime" Precision="3" />
+          <Property Name="PlanPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TrainCourse" Relationship="Self.FK__TrainPlan__Train__245D67DE" FromRole="TrainPlan" ToRole="TrainCourse" />
+          <NavigationProperty Name="TrainPerson" Relationship="Self.FK__TrainPers__Train__29221CFB" FromRole="TrainPlan" ToRole="TrainPerson" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAble" Type="Boolean" Nullable="false" />
+          <Property Name="IfChangePwd" Type="Boolean" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__User__EmployeeId__15502E78" FromRole="User" ToRole="Employee" />
+          <NavigationProperty Name="UserOperateLog" Relationship="Self.FK__UserOpera__UserI__31EC6D26" FromRole="User" ToRole="UserOperateLog" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK__UserRole__UserId__58D1301D" FromRole="User" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserOperateLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserIp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperateInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IfSuccess" Type="Boolean" Nullable="false" />
+          <Property Name="OperateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserOpera__UserI__31EC6D26" FromRole="UserOperateLog" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__UserRole__RoleId__59C55456" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserRole__UserId__58D1301D" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfessionalTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__WorkExper__Emplo__778AC167" FromRole="WorkExperience" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK__Employee__ASLeve__0EA330E9">
+          <End Role="ASLevel" Type="Self.ASLevel" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Bulletin__Depart__38996AB5">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Bulletin" Type="Self.Bulletin" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Bulletin__Publis__37A5467C">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Bulletin" Type="Self.Bulletin" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__MenuButto__Butto__4D5F7D71">
+          <End Role="Button" Type="Self.Button" Multiplicity="1" />
+          <End Role="MenuButton" Type="Self.MenuButton" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RoleMenuB__Butto__531856C7">
+          <End Role="Button" Type="Self.Button" Multiplicity="1" />
+          <End Role="RoleMenuButton" Type="Self.RoleMenuButton" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Change__AuditPer__6D0D32F4">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Change__Departme__6A30C649">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Change__Departme__6B24EA82">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Change__Employee__693CA210">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Change__RegsterP__6C190EBB">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__ChangeAud__Chang__71D1E811">
+          <End Role="Change" Type="Self.Change" Multiplicity="1" />
+          <End Role="ChangeAudit" Type="Self.ChangeAudit" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__ChangeAud__Audit__72C60C4A">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ChangeAudit" Type="Self.ChangeAudit" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Compact__Compact__1AD3FDA4">
+          <End Role="CompactType" Type="Self.CompactType" Multiplicity="1" />
+          <End Role="Compact" Type="Self.Compact" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Compact__Employe__1BC821DD">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Compact" Type="Self.Compact" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Employee__Depart__108B795B">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Dimission__Audit__5CD6CB2B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Dimission" Type="Self.Dimission" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Dimission__Emplo__5BE2A6F2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Dimission" Type="Self.Dimission" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Education__Emplo__7C4F7684">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EducationExperience" Type="Self.EducationExperience" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Evection__AuditP__571DF1D5">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Evection" Type="Self.Evection" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Evection__Employ__5535A963">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Evection" Type="Self.Evection" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Evection__Regste__5629CD9C">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Evection" Type="Self.Evection" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Inform__Employee__3E52440B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Inform" Type="Self.Inform" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Leave__AuditPers__5070F446">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Leave__EmployeeI__4D94879B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Leave__RegsterPe__4F7CD00D">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RewarAndP__Audit__0C85DE4D">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RewarAndP__Audit__123EB7A3">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RewarAndPunishAudit" Type="Self.RewarAndPunishAudit" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RewarAndP__Emplo__0A9D95DB">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RewarAndP__Regst__0B91BA14">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__TrainExpe__Emplo__01142BA1">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TrainExperience" Type="Self.TrainExperience" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__TrainPers__Train__2A164134">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TrainPerson" Type="Self.TrainPerson" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__User__EmployeeId__15502E78">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__WorkExper__Emplo__778AC167">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Leave__LeaveType__4E88ABD4">
+          <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__MenuButto__MenuI__4C6B5938">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuButton" Type="Self.MenuButton" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RoleMenuB__MenuI__540C7B00">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="RoleMenuButton" Type="Self.RoleMenuButton" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RewarAndP__Proje__09A971A2">
+          <End Role="RewarAndPunishProject" Type="Self.RewarAndPunishProject" Multiplicity="1" />
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RewarAndP__Rewar__114A936A">
+          <End Role="RewarAndPunish" Type="Self.RewarAndPunish" Multiplicity="1" />
+          <End Role="RewarAndPunishAudit" Type="Self.RewarAndPunishAudit" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__RoleMenuB__RoleI__5224328E">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleMenuButton" Type="Self.RoleMenuButton" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__UserRole__RoleId__59C55456">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__TrainPlan__Train__245D67DE">
+          <End Role="TrainCourse" Type="Self.TrainCourse" Multiplicity="1" />
+          <End Role="TrainPlan" Type="Self.TrainPlan" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__TrainPers__Train__29221CFB">
+          <End Role="TrainPlan" Type="Self.TrainPlan" Multiplicity="1" />
+          <End Role="TrainPerson" Type="Self.TrainPerson" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__UserOpera__UserI__31EC6D26">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserOperateLog" Type="Self.UserOperateLog" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__UserRole__UserId__58D1301D">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PersonnelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ASLevel" EntityType="Self.ASLevel" />
+          <EntitySet Name="Bulletin" EntityType="Self.Bulletin" />
+          <EntitySet Name="Button" EntityType="Self.Button" />
+          <EntitySet Name="Change" EntityType="Self.Change" />
+          <EntitySet Name="ChangeAudit" EntityType="Self.ChangeAudit" />
+          <EntitySet Name="Compact" EntityType="Self.Compact" />
+          <EntitySet Name="CompactType" EntityType="Self.CompactType" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Dimission" EntityType="Self.Dimission" />
+          <EntitySet Name="EducationExperience" EntityType="Self.EducationExperience" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Evection" EntityType="Self.Evection" />
+          <EntitySet Name="Inform" EntityType="Self.Inform" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" />
+          <EntitySet Name="LeaveType" EntityType="Self.LeaveType" />
+          <EntitySet Name="LoginLog" EntityType="Self.LoginLog" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="MenuButton" EntityType="Self.MenuButton" />
+          <EntitySet Name="RewarAndPunish" EntityType="Self.RewarAndPunish" />
+          <EntitySet Name="RewarAndPunishAudit" EntityType="Self.RewarAndPunishAudit" />
+          <EntitySet Name="RewarAndPunishProject" EntityType="Self.RewarAndPunishProject" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="RoleMenuButton" EntityType="Self.RoleMenuButton" />
+          <EntitySet Name="TrainCourse" EntityType="Self.TrainCourse" />
+          <EntitySet Name="TrainExperience" EntityType="Self.TrainExperience" />
+          <EntitySet Name="TrainPerson" EntityType="Self.TrainPerson" />
+          <EntitySet Name="TrainPlan" EntityType="Self.TrainPlan" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserOperateLog" EntityType="Self.UserOperateLog" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+          <EntitySet Name="WorkExperience" EntityType="Self.WorkExperience" />
+          <AssociationSet Name="FK__Employee__ASLeve__0EA330E9" Association="Self.FK__Employee__ASLeve__0EA330E9">
+            <End Role="ASLevel" EntitySet="ASLevel" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bulletin__Depart__38996AB5" Association="Self.FK__Bulletin__Depart__38996AB5">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Bulletin" EntitySet="Bulletin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bulletin__Publis__37A5467C" Association="Self.FK__Bulletin__Publis__37A5467C">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Bulletin" EntitySet="Bulletin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuButto__Butto__4D5F7D71" Association="Self.FK__MenuButto__Butto__4D5F7D71">
+            <End Role="Button" EntitySet="Button" />
+            <End Role="MenuButton" EntitySet="MenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMenuB__Butto__531856C7" Association="Self.FK__RoleMenuB__Butto__531856C7">
+            <End Role="Button" EntitySet="Button" />
+            <End Role="RoleMenuButton" EntitySet="RoleMenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__AuditPer__6D0D32F4" Association="Self.FK__Change__AuditPer__6D0D32F4">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__Departme__6A30C649" Association="Self.FK__Change__Departme__6A30C649">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__Departme__6B24EA82" Association="Self.FK__Change__Departme__6B24EA82">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__Employee__693CA210" Association="Self.FK__Change__Employee__693CA210">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Change__RegsterP__6C190EBB" Association="Self.FK__Change__RegsterP__6C190EBB">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChangeAud__Chang__71D1E811" Association="Self.FK__ChangeAud__Chang__71D1E811">
+            <End Role="Change" EntitySet="Change" />
+            <End Role="ChangeAudit" EntitySet="ChangeAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChangeAud__Audit__72C60C4A" Association="Self.FK__ChangeAud__Audit__72C60C4A">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ChangeAudit" EntitySet="ChangeAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compact__Compact__1AD3FDA4" Association="Self.FK__Compact__Compact__1AD3FDA4">
+            <End Role="CompactType" EntitySet="CompactType" />
+            <End Role="Compact" EntitySet="Compact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compact__Employe__1BC821DD" Association="Self.FK__Compact__Employe__1BC821DD">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Compact" EntitySet="Compact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Depart__108B795B" Association="Self.FK__Employee__Depart__108B795B">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dimission__Audit__5CD6CB2B" Association="Self.FK__Dimission__Audit__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Dimission" EntitySet="Dimission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dimission__Emplo__5BE2A6F2" Association="Self.FK__Dimission__Emplo__5BE2A6F2">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Dimission" EntitySet="Dimission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Education__Emplo__7C4F7684" Association="Self.FK__Education__Emplo__7C4F7684">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EducationExperience" EntitySet="EducationExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evection__AuditP__571DF1D5" Association="Self.FK__Evection__AuditP__571DF1D5">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Evection" EntitySet="Evection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evection__Employ__5535A963" Association="Self.FK__Evection__Employ__5535A963">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Evection" EntitySet="Evection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evection__Regste__5629CD9C" Association="Self.FK__Evection__Regste__5629CD9C">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Evection" EntitySet="Evection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inform__Employee__3E52440B" Association="Self.FK__Inform__Employee__3E52440B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Inform" EntitySet="Inform" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__AuditPers__5070F446" Association="Self.FK__Leave__AuditPers__5070F446">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__EmployeeI__4D94879B" Association="Self.FK__Leave__EmployeeI__4D94879B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__RegsterPe__4F7CD00D" Association="Self.FK__Leave__RegsterPe__4F7CD00D">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Audit__0C85DE4D" Association="Self.FK__RewarAndP__Audit__0C85DE4D">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Audit__123EB7A3" Association="Self.FK__RewarAndP__Audit__123EB7A3">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunishAudit" EntitySet="RewarAndPunishAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Emplo__0A9D95DB" Association="Self.FK__RewarAndP__Emplo__0A9D95DB">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Regst__0B91BA14" Association="Self.FK__RewarAndP__Regst__0B91BA14">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainExpe__Emplo__01142BA1" Association="Self.FK__TrainExpe__Emplo__01142BA1">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TrainExperience" EntitySet="TrainExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainPers__Train__2A164134" Association="Self.FK__TrainPers__Train__2A164134">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TrainPerson" EntitySet="TrainPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__EmployeeId__15502E78" Association="Self.FK__User__EmployeeId__15502E78">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkExper__Emplo__778AC167" Association="Self.FK__WorkExper__Emplo__778AC167">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="WorkExperience" EntitySet="WorkExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__LeaveType__4E88ABD4" Association="Self.FK__Leave__LeaveType__4E88ABD4">
+            <End Role="LeaveType" EntitySet="LeaveType" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuButto__MenuI__4C6B5938" Association="Self.FK__MenuButto__MenuI__4C6B5938">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuButton" EntitySet="MenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMenuB__MenuI__540C7B00" Association="Self.FK__RoleMenuB__MenuI__540C7B00">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="RoleMenuButton" EntitySet="RoleMenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Proje__09A971A2" Association="Self.FK__RewarAndP__Proje__09A971A2">
+            <End Role="RewarAndPunishProject" EntitySet="RewarAndPunishProject" />
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RewarAndP__Rewar__114A936A" Association="Self.FK__RewarAndP__Rewar__114A936A">
+            <End Role="RewarAndPunish" EntitySet="RewarAndPunish" />
+            <End Role="RewarAndPunishAudit" EntitySet="RewarAndPunishAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMenuB__RoleI__5224328E" Association="Self.FK__RoleMenuB__RoleI__5224328E">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleMenuButton" EntitySet="RoleMenuButton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__RoleId__59C55456" Association="Self.FK__UserRole__RoleId__59C55456">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainPlan__Train__245D67DE" Association="Self.FK__TrainPlan__Train__245D67DE">
+            <End Role="TrainCourse" EntitySet="TrainCourse" />
+            <End Role="TrainPlan" EntitySet="TrainPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainPers__Train__29221CFB" Association="Self.FK__TrainPers__Train__29221CFB">
+            <End Role="TrainPlan" EntitySet="TrainPlan" />
+            <End Role="TrainPerson" EntitySet="TrainPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserOpera__UserI__31EC6D26" Association="Self.FK__UserOpera__UserI__31EC6D26">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserOperateLog" EntitySet="UserOperateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__UserId__58D1301D" Association="Self.FK__UserRole__UserId__58D1301D">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <EntitySet Name="SignIn" EntityType="PersonnelModel.SignIn" />
+          <AssociationSet Name="FK__SignIn__TrainPer__6166761E" Association="PersonnelModel.FK__SignIn__TrainPer__6166761E">
+            <End Role="TrainPerson" EntitySet="TrainPerson" />
+            <End Role="SignIn" EntitySet="SignIn" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="SignIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSignIn" Type="Boolean" Nullable="false" />
+          <Property Name="SignInTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TrainPerson" Relationship="PersonnelModel.FK__SignIn__TrainPer__6166761E" FromRole="SignIn" ToRole="TrainPerson" />
+        </EntityType>
+        <Association Name="FK__SignIn__TrainPer__6166761E">
+          <End Type="PersonnelModel.TrainPerson" Role="TrainPerson" Multiplicity="1" />
+          <End Type="PersonnelModel.SignIn" Role="SignIn" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PersonnelModelStoreContainer" CdmEntityContainer="PersonnelEntities">
+          <EntitySetMapping Name="ASLevel">
+            <EntityTypeMapping TypeName="PersonnelModel.ASLevel">
+              <MappingFragment StoreEntitySet="ASLevel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BaseSalary" ColumnName="BaseSalary" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bulletin">
+            <EntityTypeMapping TypeName="PersonnelModel.Bulletin">
+              <MappingFragment StoreEntitySet="Bulletin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Theme" ColumnName="Theme" />
+                <ScalarProperty Name="Accessory" ColumnName="Accessory" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Button">
+            <EntityTypeMapping TypeName="PersonnelModel.Button">
+              <MappingFragment StoreEntitySet="Button">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Change">
+            <EntityTypeMapping TypeName="PersonnelModel.Change">
+              <MappingFragment StoreEntitySet="Change">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ChangeTime" ColumnName="ChangeTime" />
+                <ScalarProperty Name="RegsterTime" ColumnName="RegsterTime" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeAudit">
+            <EntityTypeMapping TypeName="PersonnelModel.ChangeAudit">
+              <MappingFragment StoreEntitySet="ChangeAudit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compact">
+            <EntityTypeMapping TypeName="PersonnelModel.Compact">
+              <MappingFragment StoreEntitySet="Compact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OfficialSalary" ColumnName="OfficialSalary" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="IsBuyInsurance" ColumnName="IsBuyInsurance" />
+                <ScalarProperty Name="SignTime" ColumnName="SignTime" />
+                <ScalarProperty Name="SignType" ColumnName="SignType" />
+                <ScalarProperty Name="CompactStatus" ColumnName="CompactStatus" />
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="RegsterPerson" ColumnName="RegsterPerson" />
+                <ScalarProperty Name="RegsterTime" ColumnName="RegsterTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompactType">
+            <EntityTypeMapping TypeName="PersonnelModel.CompactType">
+              <MappingFragment StoreEntitySet="CompactType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="PersonnelModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="AuditMaxLeaveDays" ColumnName="AuditMaxLeaveDays" />
+                <ScalarProperty Name="AuditMaxMoney" ColumnName="AuditMaxMoney" />
+                <ScalarProperty Name="MainPrincipal" ColumnName="MainPrincipal" />
+                <ScalarProperty Name="SubordinationPrincipal" ColumnName="SubordinationPrincipal" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dimission">
+            <EntityTypeMapping TypeName="PersonnelModel.Dimission">
+              <MappingFragment StoreEntitySet="Dimission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DimissionTime" ColumnName="DimissionTime" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationExperience">
+            <EntityTypeMapping TypeName="PersonnelModel.EducationExperience">
+              <MappingFragment StoreEntitySet="EducationExperience">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GraduateSchool" ColumnName="GraduateSchool" />
+                <ScalarProperty Name="StudyMajor" ColumnName="StudyMajor" />
+                <ScalarProperty Name="XueLi" ColumnName="XueLi" />
+                <ScalarProperty Name="IfObtainedCertificate" ColumnName="IfObtainedCertificate" />
+                <ScalarProperty Name="ImgSrc" ColumnName="ImgSrc" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="IfGraduate" ColumnName="IfGraduate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="PersonnelModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Work" ColumnName="Work" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OldName" ColumnName="OldName" />
+                <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="PoliticsStatus" ColumnName="PoliticsStatus" />
+                <ScalarProperty Name="Nation" ColumnName="Nation" />
+                <ScalarProperty Name="Marriage" ColumnName="Marriage" />
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="BaseSalary" ColumnName="BaseSalary" />
+                <ScalarProperty Name="PictureSrc" ColumnName="PictureSrc" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="GraduateSchool" ColumnName="GraduateSchool" />
+                <ScalarProperty Name="StudyMajor" ColumnName="StudyMajor" />
+                <ScalarProperty Name="XueLi" ColumnName="XueLi" />
+                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Anmelden" ColumnName="Anmelden" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="NativePlace" ColumnName="NativePlace" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="CurAddress" ColumnName="CurAddress" />
+                <ScalarProperty Name="HealthState" ColumnName="HealthState" />
+                <ScalarProperty Name="HousingCase" ColumnName="HousingCase" />
+                <ScalarProperty Name="Hobby" ColumnName="Hobby" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evection">
+            <EntityTypeMapping TypeName="PersonnelModel.Evection">
+              <MappingFragment StoreEntitySet="Evection">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Theme" ColumnName="Theme" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="SynergyPreson" ColumnName="SynergyPreson" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PredictCost" ColumnName="PredictCost" />
+                <ScalarProperty Name="ApplyForCost" ColumnName="ApplyForCost" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RegsterTime" ColumnName="RegsterTime" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inform">
+            <EntityTypeMapping TypeName="PersonnelModel.Inform">
+              <MappingFragment StoreEntitySet="Inform">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Theme" ColumnName="Theme" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Accessory" ColumnName="Accessory" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leave">
+            <EntityTypeMapping TypeName="PersonnelModel.Leave">
+              <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="LeaveCause" ColumnName="LeaveCause" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RegsterTime" ColumnName="RegsterTime" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+                <ScalarProperty Name="IsReader" ColumnName="IsReader" />
+                <ScalarProperty Name="LeaveDays" ColumnName="LeaveDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveType">
+            <EntityTypeMapping TypeName="PersonnelModel.LeaveType">
+              <MappingFragment StoreEntitySet="LeaveType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LeaveDays" ColumnName="LeaveDays" />
+                <ScalarProperty Name="OneDayMoney" ColumnName="OneDayMoney" />
+                <ScalarProperty Name="DeductMoney" ColumnName="DeductMoney" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginLog">
+            <EntityTypeMapping TypeName="PersonnelModel.LoginLog">
+              <MappingFragment StoreEntitySet="LoginLog">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserIp" ColumnName="UserIp" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IfSuccess" ColumnName="IfSuccess" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="PersonnelModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="LinkAddress" ColumnName="LinkAddress" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuButton">
+            <EntityTypeMapping TypeName="PersonnelModel.MenuButton">
+              <MappingFragment StoreEntitySet="MenuButton">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RewarAndPunish">
+            <EntityTypeMapping TypeName="PersonnelModel.RewarAndPunish">
+              <MappingFragment StoreEntitySet="RewarAndPunish">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RTime" ColumnName="RTime" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="RewarOrPunish" ColumnName="RewarOrPunish" />
+                <ScalarProperty Name="RegsterTime" ColumnName="RegsterTime" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RewarAndPunishAudit">
+            <EntityTypeMapping TypeName="PersonnelModel.RewarAndPunishAudit">
+              <MappingFragment StoreEntitySet="RewarAndPunishAudit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Opinion" ColumnName="Opinion" />
+                <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RewarAndPunishProject">
+            <EntityTypeMapping TypeName="PersonnelModel.RewarAndPunishProject">
+              <MappingFragment StoreEntitySet="RewarAndPunishProject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="PersonnelModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMenuButton">
+            <EntityTypeMapping TypeName="PersonnelModel.RoleMenuButton">
+              <MappingFragment StoreEntitySet="RoleMenuButton">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainCourse">
+            <EntityTypeMapping TypeName="PersonnelModel.TrainCourse">
+              <MappingFragment StoreEntitySet="TrainCourse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainExperience">
+            <EntityTypeMapping TypeName="PersonnelModel.TrainExperience">
+              <MappingFragment StoreEntitySet="TrainExperience">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="TrainCourse" ColumnName="TrainCourse" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="TrainRank" ColumnName="TrainRank" />
+                <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
+                <ScalarProperty Name="Organ" ColumnName="Organ" />
+                <ScalarProperty Name="ObtainedCertificateDate" ColumnName="ObtainedCertificateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainPerson">
+            <EntityTypeMapping TypeName="PersonnelModel.TrainPerson">
+              <MappingFragment StoreEntitySet="TrainPerson">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsAccept" ColumnName="IsAccept" />
+                <ScalarProperty Name="TrainNumber" ColumnName="TrainNumber" />
+                <ScalarProperty Name="TotalPoints" ColumnName="TotalPoints" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainPlan">
+            <EntityTypeMapping TypeName="PersonnelModel.TrainPlan">
+              <MappingFragment StoreEntitySet="TrainPlan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrainDays" ColumnName="TrainDays" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="TrainLecturer" ColumnName="TrainLecturer" />
+                <ScalarProperty Name="PlanTime" ColumnName="PlanTime" />
+                <ScalarProperty Name="PlanPerson" ColumnName="PlanPerson" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="PersonnelModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
+                <ScalarProperty Name="IsAble" ColumnName="IsAble" />
+                <ScalarProperty Name="IfChangePwd" ColumnName="IfChangePwd" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserOperateLog">
+            <EntityTypeMapping TypeName="PersonnelModel.UserOperateLog">
+              <MappingFragment StoreEntitySet="UserOperateLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserIp" ColumnName="UserIp" />
+                <ScalarProperty Name="OperateInfo" ColumnName="OperateInfo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IfSuccess" ColumnName="IfSuccess" />
+                <ScalarProperty Name="OperateDate" ColumnName="OperateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="PersonnelModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkExperience">
+            <EntityTypeMapping TypeName="PersonnelModel.WorkExperience">
+              <MappingFragment StoreEntitySet="WorkExperience">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="WorkDepartment" ColumnName="WorkDepartment" />
+                <ScalarProperty Name="ProfessionalTitle" ColumnName="ProfessionalTitle" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__Employee__ASLeve__0EA330E9" TypeName="PersonnelModel.FK__Employee__ASLeve__0EA330E9" StoreEntitySet="Employee">
+            <EndProperty Name="ASLevel">
+              <ScalarProperty Name="Id" ColumnName="ASLevelId" />
+            </EndProperty>
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Bulletin__Depart__38996AB5" TypeName="PersonnelModel.FK__Bulletin__Depart__38996AB5" StoreEntitySet="Bulletin">
+            <EndProperty Name="Department">
+              <ScalarProperty Name="Id" ColumnName="DepartmentId" />
+            </EndProperty>
+            <EndProperty Name="Bulletin">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Bulletin__Publis__37A5467C" TypeName="PersonnelModel.FK__Bulletin__Publis__37A5467C" StoreEntitySet="Bulletin">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="Publisher" />
+            </EndProperty>
+            <EndProperty Name="Bulletin">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__MenuButto__Butto__4D5F7D71" TypeName="PersonnelModel.FK__MenuButto__Butto__4D5F7D71" StoreEntitySet="MenuButton">
+            <EndProperty Name="Button">
+              <ScalarProperty Name="Id" ColumnName="ButtonId" />
+            </EndProperty>
+            <EndProperty Name="MenuButton">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RoleMenuB__Butto__531856C7" TypeName="PersonnelModel.FK__RoleMenuB__Butto__531856C7" StoreEntitySet="RoleMenuButton">
+            <EndProperty Name="Button">
+              <ScalarProperty Name="Id" ColumnName="ButtonId" />
+            </EndProperty>
+            <EndProperty Name="RoleMenuButton">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Change__AuditPer__6D0D32F4" TypeName="PersonnelModel.FK__Change__AuditPer__6D0D32F4" StoreEntitySet="Change">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPerson" />
+            </EndProperty>
+            <EndProperty Name="Change">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="AuditPerson" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Change__Departme__6A30C649" TypeName="PersonnelModel.FK__Change__Departme__6A30C649" StoreEntitySet="Change">
+            <EndProperty Name="Department">
+              <ScalarProperty Name="Id" ColumnName="DepartmentId_Old" />
+            </EndProperty>
+            <EndProperty Name="Change">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Change__Departme__6B24EA82" TypeName="PersonnelModel.FK__Change__Departme__6B24EA82" StoreEntitySet="Change">
+            <EndProperty Name="Department">
+              <ScalarProperty Name="Id" ColumnName="DepartmentId_New" />
+            </EndProperty>
+            <EndProperty Name="Change">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Change__Employee__693CA210" TypeName="PersonnelModel.FK__Change__Employee__693CA210" StoreEntitySet="Change">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="Change">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Change__RegsterP__6C190EBB" TypeName="PersonnelModel.FK__Change__RegsterP__6C190EBB" StoreEntitySet="Change">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="RegsterPerson" />
+            </EndProperty>
+            <EndProperty Name="Change">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__ChangeAud__Chang__71D1E811" TypeName="PersonnelModel.FK__ChangeAud__Chang__71D1E811" StoreEntitySet="ChangeAudit">
+            <EndProperty Name="Change">
+              <ScalarProperty Name="Id" ColumnName="ChangeId" />
+            </EndProperty>
+            <EndProperty Name="ChangeAudit">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__ChangeAud__Audit__72C60C4A" TypeName="PersonnelModel.FK__ChangeAud__Audit__72C60C4A" StoreEntitySet="ChangeAudit">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPersonId" />
+            </EndProperty>
+            <EndProperty Name="ChangeAudit">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Compact__Compact__1AD3FDA4" TypeName="PersonnelModel.FK__Compact__Compact__1AD3FDA4" StoreEntitySet="Compact">
+            <EndProperty Name="CompactType">
+              <ScalarProperty Name="Id" ColumnName="CompactTypeId" />
+            </EndProperty>
+            <EndProperty Name="Compact">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Compact__Employe__1BC821DD" TypeName="PersonnelModel.FK__Compact__Employe__1BC821DD" StoreEntitySet="Compact">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="Compact">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Employee__Depart__108B795B" TypeName="PersonnelModel.FK__Employee__Depart__108B795B" StoreEntitySet="Employee">
+            <EndProperty Name="Department">
+              <ScalarProperty Name="Id" ColumnName="DepartmentId" />
+            </EndProperty>
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Dimission__Audit__5CD6CB2B" TypeName="PersonnelModel.FK__Dimission__Audit__5CD6CB2B" StoreEntitySet="Dimission">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPerson" />
+            </EndProperty>
+            <EndProperty Name="Dimission">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="AuditPerson" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Dimission__Emplo__5BE2A6F2" TypeName="PersonnelModel.FK__Dimission__Emplo__5BE2A6F2" StoreEntitySet="Dimission">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="Dimission">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Education__Emplo__7C4F7684" TypeName="PersonnelModel.FK__Education__Emplo__7C4F7684" StoreEntitySet="EducationExperience">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="EducationExperience">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Evection__AuditP__571DF1D5" TypeName="PersonnelModel.FK__Evection__AuditP__571DF1D5" StoreEntitySet="Evection">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPerson" />
+            </EndProperty>
+            <EndProperty Name="Evection">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="AuditPerson" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Evection__Employ__5535A963" TypeName="PersonnelModel.FK__Evection__Employ__5535A963" StoreEntitySet="Evection">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="Evection">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Evection__Regste__5629CD9C" TypeName="PersonnelModel.FK__Evection__Regste__5629CD9C" StoreEntitySet="Evection">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="RegsterPerson" />
+            </EndProperty>
+            <EndProperty Name="Evection">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Inform__Employee__3E52440B" TypeName="PersonnelModel.FK__Inform__Employee__3E52440B" StoreEntitySet="Inform">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="Inform">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Leave__AuditPers__5070F446" TypeName="PersonnelModel.FK__Leave__AuditPers__5070F446" StoreEntitySet="Leave">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPerson" />
+            </EndProperty>
+            <EndProperty Name="Leave">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="AuditPerson" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Leave__EmployeeI__4D94879B" TypeName="PersonnelModel.FK__Leave__EmployeeI__4D94879B" StoreEntitySet="Leave">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="Leave">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Leave__RegsterPe__4F7CD00D" TypeName="PersonnelModel.FK__Leave__RegsterPe__4F7CD00D" StoreEntitySet="Leave">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="RegsterPerson" />
+            </EndProperty>
+            <EndProperty Name="Leave">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RewarAndP__Audit__0C85DE4D" TypeName="PersonnelModel.FK__RewarAndP__Audit__0C85DE4D" StoreEntitySet="RewarAndPunish">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPerson" />
+            </EndProperty>
+            <EndProperty Name="RewarAndPunish">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="AuditPerson" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RewarAndP__Audit__123EB7A3" TypeName="PersonnelModel.FK__RewarAndP__Audit__123EB7A3" StoreEntitySet="RewarAndPunishAudit">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="AuditPerson" />
+            </EndProperty>
+            <EndProperty Name="RewarAndPunishAudit">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RewarAndP__Emplo__0A9D95DB" TypeName="PersonnelModel.FK__RewarAndP__Emplo__0A9D95DB" StoreEntitySet="RewarAndPunish">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="RewarAndPunish">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RewarAndP__Regst__0B91BA14" TypeName="PersonnelModel.FK__RewarAndP__Regst__0B91BA14" StoreEntitySet="RewarAndPunish">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="RegsterPerson" />
+            </EndProperty>
+            <EndProperty Name="RewarAndPunish">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__TrainExpe__Emplo__01142BA1" TypeName="PersonnelModel.FK__TrainExpe__Emplo__01142BA1" StoreEntitySet="TrainExperience">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="TrainExperience">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__TrainPers__Train__2A164134" TypeName="PersonnelModel.FK__TrainPers__Train__2A164134" StoreEntitySet="TrainPerson">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="TrainObject" />
+            </EndProperty>
+            <EndProperty Name="TrainPerson">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__User__EmployeeId__15502E78" TypeName="PersonnelModel.FK__User__EmployeeId__15502E78" StoreEntitySet="User">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="EmployeeId" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__WorkExper__Emplo__778AC167" TypeName="PersonnelModel.FK__WorkExper__Emplo__778AC167" StoreEntitySet="WorkExperience">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="WorkExperience">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Leave__LeaveType__4E88ABD4" TypeName="PersonnelModel.FK__Leave__LeaveType__4E88ABD4" StoreEntitySet="Leave">
+            <EndProperty Name="LeaveType">
+              <ScalarProperty Name="Id" ColumnName="LeaveTypeId" />
+            </EndProperty>
+            <EndProperty Name="Leave">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__MenuButto__MenuI__4C6B5938" TypeName="PersonnelModel.FK__MenuButto__MenuI__4C6B5938" StoreEntitySet="MenuButton">
+            <EndProperty Name="Menu">
+              <ScalarProperty Name="Id" ColumnName="MenuId" />
+            </EndProperty>
+            <EndProperty Name="MenuButton">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RoleMenuB__MenuI__540C7B00" TypeName="PersonnelModel.FK__RoleMenuB__MenuI__540C7B00" StoreEntitySet="RoleMenuButton">
+            <EndProperty Name="Menu">
+              <ScalarProperty Name="Id" ColumnName="MenuId" />
+            </EndProperty>
+            <EndProperty Name="RoleMenuButton">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RewarAndP__Proje__09A971A2" TypeName="PersonnelModel.FK__RewarAndP__Proje__09A971A2" StoreEntitySet="RewarAndPunish">
+            <EndProperty Name="RewarAndPunishProject">
+              <ScalarProperty Name="Id" ColumnName="ProjectId" />
+            </EndProperty>
+            <EndProperty Name="RewarAndPunish">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RewarAndP__Rewar__114A936A" TypeName="PersonnelModel.FK__RewarAndP__Rewar__114A936A" StoreEntitySet="RewarAndPunishAudit">
+            <EndProperty Name="RewarAndPunish">
+              <ScalarProperty Name="Id" ColumnName="RewarAndPunishId" />
+            </EndProperty>
+            <EndProperty Name="RewarAndPunishAudit">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__RoleMenuB__RoleI__5224328E" TypeName="PersonnelModel.FK__RoleMenuB__RoleI__5224328E" StoreEntitySet="RoleMenuButton">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="RoleMenuButton">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__UserRole__RoleId__59C55456" TypeName="PersonnelModel.FK__UserRole__RoleId__59C55456" StoreEntitySet="UserRole">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="UserRole">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__TrainPlan__Train__245D67DE" TypeName="PersonnelModel.FK__TrainPlan__Train__245D67DE" StoreEntitySet="TrainPlan">
+            <EndProperty Name="TrainCourse">
+              <ScalarProperty Name="Id" ColumnName="TrainCourseId" />
+            </EndProperty>
+            <EndProperty Name="TrainPlan">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__TrainPers__Train__29221CFB" TypeName="PersonnelModel.FK__TrainPers__Train__29221CFB" StoreEntitySet="TrainPerson">
+            <EndProperty Name="TrainPlan">
+              <ScalarProperty Name="Id" ColumnName="TrainCourseId" />
+            </EndProperty>
+            <EndProperty Name="TrainPerson">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__UserOpera__UserI__31EC6D26" TypeName="PersonnelModel.FK__UserOpera__UserI__31EC6D26" StoreEntitySet="UserOperateLog">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="UserOperateLog">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="UserId" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__UserRole__UserId__58D1301D" TypeName="PersonnelModel.FK__UserRole__UserId__58D1301D" StoreEntitySet="UserRole">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="UserRole">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="SignIn">
+            <EntityTypeMapping TypeName="PersonnelModel.SignIn">
+              <MappingFragment StoreEntitySet="SignIn">
+                <ScalarProperty Name="SignInTime" ColumnName="SignInTime" />
+                <ScalarProperty Name="IsSignIn" ColumnName="IsSignIn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__SignIn__TrainPer__6166761E" TypeName="PersonnelModel.FK__SignIn__TrainPer__6166761E" StoreEntitySet="SignIn">
+            <EndProperty Name="SignIn">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="TrainPerson">
+              <ScalarProperty Name="Id" ColumnName="TrainPersonId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

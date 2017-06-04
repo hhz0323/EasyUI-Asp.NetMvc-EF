@@ -1,0 +1,171 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="~/js/easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="~/js/easyui/themes/icon.css" />
+    
+    <style type="text/css">
+        .cs-navi-tab {
+            display: block;
+            padding: 5px 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000000;
+        }
+            .mouseOverBg {
+            background: #E5EFFF;
+        }
+        .mouseClickBg {
+            background: #FFE48D;
+            border: 1px solid #D69C00;
+        }
+        .accordion-body {
+        padding:10px 15px;
+        }
+        #top {
+            background-image: url('~/Content/Images/Logo/logo.gif');
+        }
+    </style>
+</head>
+
+<body class=easyui-layout>
+    
+    <div id="top" data-options="region:'north'" style="height: 60px;">
+        人事管理系统
+        <div style="position: absolute; right: 5px; top: 10px;" id="div_welcome">
+        </div>
+        <div style="position: absolute; right: 0px; bottom: 0px;">
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-user_business_boss'"
+               onclick="searchMyInfo();">我的信息</a><a href="javascript:void(0);" class="easyui-linkbutton"
+   data-options="plain:true,iconCls:'icon-advancedsettings'" onclick="changePwd();">修改密码</a><a href="javascript:void(0);"
+               class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-stop'" onclick="loginOut();">退出系统</a>
+        </div>
+    </div>
+    <!--<div data-options="region:'south'" style="height: 50px;"></div>-->
+    <div data-options="region:'west',split:true" title="导航菜单" style="width:180px;">
+        <div class="easyui-accordion" data-options="fit:true,border:false" id="accordion">
+            @*<div title="权限管理" data-options="selected:true" style="padding: 10px;">
+                <!--<span class="cs-navi-tab" src="content1.html">
+                <img src="js/easyui/themes/icons/edit_add.png" style="vertical-align: middle;"/><a href="javascript:void(0)" style="text-decoration: none;color: #000;margin-left: 5px;">员工管理</a>
+            </span>-->
+                <!--<a href="javascript:void(0)" class="cs-navi-tab" src="content1.html">员工管理</a>
+            <a href="javascript:void(0)" src="content1.html" class="cs-navi-tab">用户管理</a>
+            <a href="javascript:void(0)" src="content1.html" class="cs-navi-tab">角色管理</a>
+            <a href="javascript:void(0)" src="content1.html" class="cs-navi-tab">用户权限管理</a>-->
+            </div>*@
+        </div>
+    </div>
+    <!--<div data-options="region:'east',split:true" title="West" style="width:150px;"></div>-->
+    <div data-options="region:'center'">
+        <div id="tt" class="easyui-tabs" data-options="fit:true,border:false,
+             tools:[
+                    {iconCls : 'icon-refresh',text:'刷新',handler:refreshTab},
+                    {iconCls : 'icon-delete3',text:'关闭全部',handler:closeTab},
+                    ]">
+            <div title="用户桌面" data-options="iconCls:'icon-house'" style="padding:10px"></div>
+        </div>
+       
+    </div>
+</body>
+</html>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/easyui/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="~/js/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function () {
+        //初始化菜单
+        initMenu();
+    })
+    //初始化菜单
+    function initMenu()
+    {
+        $.ajax({
+            url: '/Home/GetUserMenu',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    if (value.ParentId == 0) {
+                        if (index==0) {
+                            $("#accordion").accordion("add", {
+                                title: value.Name,
+                                selected: true,
+                                id: value.Id,
+                                iconCls: value.Icon
+                            });
+                        } else {
+                            $("#accordion").accordion("add", {
+                                title: value.Name,
+                                selected: false,
+                                id: value.Id,
+                                iconCls: value.Icon
+                            });
+                        }
+                    } else {
+                        var cha = value.Icon;
+                        var img = "";
+                        if (cha) {
+                            img = cha.split('-')[1];
+                        }
+                        $("div[id=" + value.ParentId + "]").append('<a href="javascript:void(0)" data-icon='+value.Icon+' src=' + value.LinkAddress + ' class="cs-navi-tab"><img src="/js/easyui/themes/icons/'+img+'.png" style="vertical-align:middle;margin-right:5px" /><span>' + value.Name + '</span></a>');
+                    }
+                });
+
+                $(".cs-navi-tab").mouseover(function () {
+                    $(this).addClass('mouseOverBg');
+                }).mouseout(function () {
+                    $(this).removeClass('mouseOverBg');
+                });
+                $(".cs-navi-tab").click(function () {
+                    //点击变色
+                    $(".cs-navi-tab").removeClass('mouseClickBg');
+                    $(this).addClass('mouseClickBg').siblings().removeClass('mouseClickBg');
+
+                    var $this = $(this);
+                    var href = $this.attr('src');
+                    var title = $this.text();
+                    addTab(title, href, $this.data('icon'));
+                })
+            }
+        });
+    }
+
+    function addTab(title, url,icon) {
+        if ($('#tt').tabs('exists', title)) {
+            $('#tt').tabs('select', title);
+        } else {
+            var content = '<iframe scrolling="auto" frameborder="0" src="' + url + '" style="width:100%;height:99%;"></iframe>';
+            $('#tt').tabs('add', {
+                title: title,
+                content: content,
+                iconCls:icon,
+                closable: true,
+                loadingMessage: '正在加载中......'
+            });
+        }
+    }
+    function refreshTab() {
+        var index = $('#tt').tabs('getTabIndex', $('#tt').tabs('getSelected'));
+        if (index != -1) {
+            $('#tt').tabs('getTab', index).panel('refresh');
+        }
+    }
+
+    function closeTab() {
+        $('.tabs-inner span').each(function (i, n) {
+            var t = $(n).text();
+            if (t != '' && i != 0) {
+                $('#tt').tabs('close', t);
+            }
+        });
+    }
+
+</script>
+
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b285fdfcc584f8e9c1844ff0b8c3b2f" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="PersonnelModel.ASLevel" Width="1.5" PointX="6.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Bulletin" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Button" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Change" Width="1.5" PointX="6" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.ChangeAudit" Width="1.5" PointX="14.25" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Compact" Width="1.5" PointX="14.25" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.CompactType" Width="1.5" PointX="12" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Department" Width="1.5" PointX="0.75" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Dimission" Width="1.5" PointX="11.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.EducationExperience" Width="1.5" PointX="11.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Employee" Width="1.5" PointX="9" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Evection" Width="1.5" PointX="11.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Inform" Width="1.5" PointX="11.25" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Leave" Width="1.5" PointX="14.25" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.LeaveType" Width="1.5" PointX="12" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.LoginLog" Width="1.5" PointX="13.5" PointY="50" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Menu" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.MenuButton" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.RewarAndPunish" Width="1.5" PointX="17.25" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.RewarAndPunishAudit" Width="1.5" PointX="19.5" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.RewarAndPunishProject" Width="1.5" PointX="15" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.Role" Width="1.5" PointX="14.25" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.RoleMenuButton" Width="1.5" PointX="17.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.TrainCourse" Width="1.5" PointX="12.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.TrainExperience" Width="1.5" PointX="11.25" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.TrainPerson" Width="1.5" PointX="17.25" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.TrainPlan" Width="1.5" PointX="15" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.User" Width="1.5" PointX="11.25" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.UserOperateLog" Width="1.5" PointX="13.5" PointY="53" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.UserRole" Width="1.5" PointX="16.5" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonnelModel.WorkExperience" Width="1.5" PointX="11.25" PointY="56" IsExpanded="true" />
+        <AssociationConnector Association="PersonnelModel.FK__Employee__ASLeve__0EA330E9" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Bulletin__Depart__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Bulletin__Publis__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__MenuButto__Butto__4D5F7D71" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RoleMenuB__Butto__531856C7" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Change__AuditPer__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Change__Departme__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Change__Departme__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Change__Employee__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Change__RegsterP__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__ChangeAud__Chang__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__ChangeAud__Audit__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Compact__Compact__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Compact__Employe__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Employee__Depart__108B795B" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Dimission__Audit__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Dimission__Emplo__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Education__Emplo__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Evection__AuditP__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Evection__Employ__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Evection__Regste__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Inform__Employee__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Leave__AuditPers__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Leave__EmployeeI__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Leave__RegsterPe__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RewarAndP__Audit__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RewarAndP__Audit__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RewarAndP__Emplo__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RewarAndP__Regst__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__TrainExpe__Emplo__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__TrainPers__Train__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__User__EmployeeId__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__WorkExper__Emplo__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__Leave__LeaveType__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__MenuButto__MenuI__4C6B5938" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RoleMenuB__MenuI__540C7B00" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RewarAndP__Proje__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RewarAndP__Rewar__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__RoleMenuB__RoleI__5224328E" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__UserRole__RoleId__59C55456" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__TrainPlan__Train__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__TrainPers__Train__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__UserOpera__UserI__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonnelModel.FK__UserRole__UserId__58D1301D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PersonnelModel.SignIn" Width="1.5" PointX="19.5" PointY="24.5" />
+        <AssociationConnector Association="PersonnelModel.FK__SignIn__TrainPer__6166761E" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
